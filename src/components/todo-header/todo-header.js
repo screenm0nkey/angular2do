@@ -11,17 +11,17 @@ var keymap = {
 
 @Component({
     selector: 'todo-header',
-    injectables : [TodoStore]
+    injectables: [TodoStore]
 })
 @View({
-    templateUrl: System.baseURL+'components/todo-header/todo-header.html'
+    templateUrl: System.baseURL + 'components/todo-header/todo-header.html'
 })
 export class TodoHeader {
-    todoService: TodoStore;
+    todoService:TodoStore;
 
-    constructor( todoService: TodoStore ) {
+    constructor(todoService:TodoStore) {
         this.todoService = todoService;
-        console.log('header', this.todoService);
+        console.log('todo-header', this.todoService);
     }
 
     enterTodo($event) {

@@ -1,52 +1,38 @@
-import {Component, View} from 'angular2/angular2';
+import {Component, View, For} from 'angular2/angular2';
 import {TodoStore} from 'stores/TodoStore';
 
-var keymap = {
-  tab: 9,
-  enter: 13,
-  esc: 27,
-  up: 38,
-  down: 40
-};
 
 @Component({
-  selector: 'todo-header',
-  injectables : [TodoStore]
+    selector: 'todo-main',
+    injectables: [TodoStore]
 })
 @View({
-  templateUrl: System.baseURL+'components/todo-header/todo-header.html'
+    templateUrl: System.baseURL + 'components/todo-main/todo-main.html',
+    directives: [
+        For
+    ]
 })
-export class TodoHeader {
-  todoService: TodoStore;
+export class TodoMain {
+    todoService : TodoStore;
 
-  constructor( todoService: TodoStore ) {
-    this.todoService = todoService;
-    console.log('header', this.todoService);
-  }
-
-  enterTodo($event) {
-    // ENTER_KEY
-    if ($event.which === keymap.enter) {
-      $event.preventDefault();
-      // if value
-      if ($event.target.value !== '') {
-        this.addTodo($event.target.value);
-        $event.target.value = '';
-      }
+    constructor(todoService : TodoStore) {
+        this.todoService = todoService;
+        console.log('todo-main');
     }
-  }
 
-  addTodo(text) {
-    if (!text) return;
-    this.todoService.create({
-      content: text,
-      completed: false
-    });
-  }
+    getList() {
+        // TODO: filter list
+        console.log(this.todoService.getFilteredList())
+        return this.todoService.getFilteredList();
+    }
 
-  toggleAll(isComplete) {
-    this.todoService.toggleAll(isComplete);
-  }
+    editTodo(todo) {
+        this.todoService.editing(todo);
+    }
+
+    toggleComplete(todo) {
+        this.todoService.toggleComplete(todo);
+    }
 }
 
 
