@@ -1,0 +1,19 @@
+<section [hidden]="todoService.count == 0">
+  <ul>
+    <li
+      template="foreach: #todo in getList()"
+      [class.editing]="todoService.state.editing == todo"
+      [class.completed]="todo.completed == true"
+    >
+      <input type="checkbox"
+        [hidden]="todoService.state.editing == todo"
+        [checked]="todo.completed == true"
+        (click)="toggleComplete(todo)"
+      />
+      <todo-item
+        [value]="todo"
+        (dblclick)="editTodo(todo)"
+      >{{ todo.content }}</todo-item>
+    </li>
+  </ul>
+</section>
