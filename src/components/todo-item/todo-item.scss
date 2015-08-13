@@ -1,4 +1,19 @@
 .todo-item {
+    label {
+        word-break: break-word;
+        padding: 15px 60px 15px 15px;
+        margin-left: 45px;
+        display: block;
+        line-height: 1.2;
+        -webkit-transition: color 0.4s;
+        transition: color 0.4s;
+    }
+
+    label.completed {
+        color: #d9d9d9;
+        text-decoration: line-through;
+    }
+
     button {
         margin: 0;
         padding: 0;
@@ -61,16 +76,7 @@
         margin: -1px -1px -1px 44px;
     }
 
-    label {
-        white-space: pre;
-        word-break: break-word;
-        padding: 15px 60px 15px 15px;
-        margin-left: 45px;
-        display: block;
-        line-height: 1.2;
-        -webkit-transition: color 0.4s;
-        transition: color 0.4s;
-    }
+
 
     input[type=checkbox] {
         text-align: center;
@@ -96,20 +102,7 @@
         content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
     }
 
-    label {
-        white-space: pre;
-        word-break: break-word;
-        padding: 15px 60px 15px 15px;
-        margin-left: 45px;
-        display: block;
-        line-height: 1.2;
-        transition: color 0.4s;
-    }
 
-    label.completed {
-        color: #d9d9d9;
-        text-decoration: line-through;
-    }
 
     :host button {
         display: none;

@@ -9,7 +9,7 @@ export class TodoFocus {
         this.element = el;
         console.log('todo-focus', el.domElement);
     }
-    // this is a
+    // this is a setter for 'isFocused' from es5
     set isFocused(value) {
         if (value) {
             this.element.domElement.focus();

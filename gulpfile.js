@@ -15,8 +15,11 @@ var PATHS = {
   src: {
     js: 'src/**/*.js',
     html: 'src/**/*.html',
-    css : ['dist/css/index.css', 'dist/css/**/*.css'],
-    sass : ['src/index.scss', 'src/**/*.scss']
+    css : [
+        'dist/css/index.css',
+        'dist/css/**/*.css'
+    ],
+    sass : ['src/**/*.scss']
   },
   lib: [
     'node_modules/gulp-traceur/node_modules/traceur/bin/traceur-runtime.js',
@@ -42,7 +45,7 @@ gulp.task('cleanDistCss', function(done) {
     del(['dist/css'], done);
 });
 
-gulp.task('sass', function () {
+gulp.task('sass',['cleanDistCss'], function () {
   gulp.src(PATHS.src.sass)
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('dist/css'))
@@ -50,8 +53,13 @@ gulp.task('sass', function () {
       .pipe(gulp.dest('dist'));
 });
 
+// this is no longer used
+gulp.task('css', function () {
+    gulp.src(PATHS.src.css)
+        .pipe(concat('build.css'))
+        .pipe(gulp.dest('dist'));
+});
 
-gulp.task('nick', ['clean', 'sass', 'cleanDistCss']);
 
 
 gulp.task('js', function () {

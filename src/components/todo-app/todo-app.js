@@ -1,6 +1,7 @@
 import {Component, View} from 'angular2/angular2';
 import {TodoHeader} from 'components/todo-header/todo-header';
 import {TodoMain} from 'components/todo-main/todo-main';
+import {TodoFooter} from 'components/todo-footer/todo-footer';
 
 @Component({
     selector: 'todo-app'
@@ -9,7 +10,8 @@ import {TodoMain} from 'components/todo-main/todo-main';
     templateUrl: System.baseURL + 'components/todo-app/todo-app.html',
     directives: [
         TodoHeader,
-        TodoMain
+        TodoMain,
+        TodoFooter
     ]
 })
 export class TodoApp {
