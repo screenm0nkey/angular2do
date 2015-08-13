@@ -5,16 +5,15 @@
             [class.completed]="todo.completed == true">
 
             <input type="checkbox"
-               [hidden]="todoService.state.editing == todo"
-               [checked]="todo.completed == true"
-               (click)="toggleComplete(todo)"/>
+                   [hidden]="todoService.state.editing == todo"
+                   [checked]="todo.completed == true"
+                   (click)="toggleComplete(todo)"/>
 
             <todo-item
-                [value]="todo"
-                (dblclick)="editTodo(todo)">
+                    [value]="todo"
+                    (dblclick)="editTodo(todo)">
                 {{ todo.content }}
             </todo-item>
-
         </li>
     </ul>
 

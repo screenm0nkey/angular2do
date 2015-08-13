@@ -9,12 +9,14 @@ var path = require('path');
 var fs = require('fs');
 var mkpath = require('mkpath');
 var concat = require('gulp-concat');
+var sass = require('gulp-sass');
 
 var PATHS = {
   src: {
     js: 'src/**/*.js',
     html: 'src/**/*.html',
-    css : ['src/index.css', 'src/components/**/*.css']
+    css : ['src/index.css', 'src/components/**/*.css'],
+    sass : ['src/index.scss', 'src/components/**/*.scss']
   },
   lib: [
     'node_modules/gulp-traceur/node_modules/traceur/bin/traceur-runtime.js',
@@ -33,15 +35,23 @@ var PATHS = {
 };
 
 gulp.task('clean', function(done) {
-  del(['dist'], done);
+  del(['dist/**'], done);
 });
 
+gulp.task('sass', function () {
+  gulp.src(PATHS.src.sass)
+      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+      .pipe(gulp.dest('dest/css'));
+});
 
 gulp.task('css', function () {
   return gulp.src(PATHS.src.css)
       .pipe(concat('build.css'))
       .pipe(gulp.dest('dist'));
 });
+
+
+gulp.task('nick', ['clean', 'sass']);
 
 
 gulp.task('js', function () {

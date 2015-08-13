@@ -1,4 +1,5 @@
 import {Component, View, For} from 'angular2/angular2';
+import {TodoItem} from 'components/todo-item/todo-item';
 import {TodoStore} from 'stores/TodoStore';
 
 
@@ -9,13 +10,14 @@ import {TodoStore} from 'stores/TodoStore';
 @View({
     templateUrl: System.baseURL + 'components/todo-main/todo-main.html',
     directives: [
-        For
+        For,
+        TodoItem
     ]
 })
 export class TodoMain {
-    todoService : TodoStore;
+    todoService:TodoStore;
 
-    constructor(todoService : TodoStore) {
+    constructor(todoService:TodoStore) {
         this.todoService = todoService;
         console.log('todo-main');
     }
