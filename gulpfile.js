@@ -16,7 +16,7 @@ var PATHS = {
     js: 'src/**/*.js',
     html: 'src/**/*.html',
     css : ['dist/css/index.css', 'dist/css/**/*.css'],
-    sass : ['src/index.scss', 'src/components/**/*.scss']
+    sass : ['src/index.scss', 'src/**/*.scss']
   },
   lib: [
     'node_modules/gulp-traceur/node_modules/traceur/bin/traceur-runtime.js',
@@ -35,19 +35,23 @@ var PATHS = {
 };
 
 gulp.task('clean', function(done) {
-  del(['dist/**'], done);
+  del(['dist'], done);
+});
+
+gulp.task('cleanDistCss', function(done) {
+    del(['dist/css'], done);
 });
 
 gulp.task('sass', function () {
   gulp.src(PATHS.src.sass)
-      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+      .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('dist/css'))
       .pipe(concat('build.css'))
       .pipe(gulp.dest('dist'));
 });
 
 
-gulp.task('nick', ['clean', 'sass']);
+gulp.task('nick', ['clean', 'sass', 'cleanDistCss']);
 
 
 gulp.task('js', function () {
@@ -121,7 +125,7 @@ gulp.task('play', ['default'], function () {
 
   gulp.watch(PATHS.src.html, ['html']);
   gulp.watch(PATHS.src.js, ['js']);
-  gulp.watch(PATHS.src.css.all, ['css']);
+  gulp.watch(PATHS.src.sass, ['sass']);
 
   app = connect();
 
@@ -133,4 +137,4 @@ gulp.task('play', ['default'], function () {
   });
 });
 
-gulp.task('default', ['js', 'css', 'html', 'libs']);
+gulp.task('default', ['js', 'sass', 'html', 'libs']);

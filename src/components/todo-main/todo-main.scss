@@ -1,3 +1,27 @@
+.todo-main {
+
+    section {
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid #e6e6e6;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -khtml-uUser-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    li {
+        position: relative;
+        font-size: 24px;
+        border-bottom: 1px solid #ededed;
+    }
 
     button {
         margin: 0;
@@ -45,20 +69,24 @@
         font-smoothing: antialiased;
     }
 
-    :host:last-child {
+    ul li:last-child {
         border-bottom: none;
     }
 
-    :host.editing {
+    ul li.editing {
         border-bottom: none;
         padding: 0;
     }
 
-    input.editing {
+    ul li.editing .edit input {
         display: block;
         width: 506px;
         padding: 13px 17px 12px 17px;
         margin: -1px -1px -1px 44px;
+    }
+
+    ul li.editing .view {
+        display: none;
     }
 
     label {
@@ -72,7 +100,7 @@
         transition: color 0.4s;
     }
 
-    input[type=checkbox] {
+    ul li input[type=checkbox] {
         text-align: center;
         width: 40px;
         /* auto, since non-WebKit browsers doesn't support input styling */
@@ -88,15 +116,15 @@
         outline: none;
     }
 
-    input[type=checkbox]:after {
+    ul li input[type=checkbox]:after {
         content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
     }
 
-    input[type=checkbox]:checked:after {
+    ul li input[type=checkbox]:checked:after {
         content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
     }
 
-    label {
+    ul li label {
         white-space: pre;
         word-break: break-word;
         padding: 15px 60px 15px 15px;
@@ -106,12 +134,12 @@
         transition: color 0.4s;
     }
 
-    label.completed {
+    ul li.completed label {
         color: #d9d9d9;
         text-decoration: line-through;
     }
 
-    :host button {
+    ul li button {
         display: none;
         position: absolute;
         top: 0;
@@ -126,16 +154,20 @@
         transition: color 0.2s ease-out;
     }
 
-    :host button:hover {
+    ul li button:hover {
         color: #af5b5e;
     }
 
-    :host button:after {
+    ul li button:after {
         content: '×';
     }
 
-    :host(:hover) button {
+    ul li:hover button {
         display: block;
+    }
+
+    ul li .edit input {
+        display: none;
     }
 
     /*
@@ -148,9 +180,12 @@
     Can't use it globally since it destroys checkboxes in Firefox
     */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
-        :host input[type=checkbox] {
+        ul li input[type=checkbox] {
             background: none;
-            height: 40px !important; /* inline styles */
         }
 
+        ul li input[type=checkbox] {
+            height: 40px !important; /* inline styles */
+        }
     }
+}

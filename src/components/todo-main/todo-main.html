@@ -1,4 +1,4 @@
-<section [hidden]="todoService.count == 0">
+<section class="todo-main" [hidden]="todoService.count == 0">
     <ul>
         <li *for="#todo of getList()"
             [class.editing]="todoService.state.editing == todo"
