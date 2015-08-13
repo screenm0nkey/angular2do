@@ -1,6 +1,5 @@
 <div class="todo-item view" [hidden]="todoService.state.editing == todo">
-    <label
-            [class.completed]="todo.completed == true">
+    <label [class.completed]="todo.completed == true">
         <content></content>
     </label>
 
@@ -9,9 +8,9 @@
 
 <div class="edit" [hidden]="todoService.state.editing != todo">
     <input type="text"
-           [class.editing]="todoService.state.editing == todo"
-           [todo-focus]="todoService.state.editing == todo"
-           [value]="todo.content"
-           (keyup)="doneEditing($event, todo)"
-            />
+       [class.editing]="todoService.state.editing == todo"
+       [todo-focus]="todoService.state.editing == todo"
+       [value]="todo.content"
+       (keyup)="doneEditing($event, todo)"
+    />
 </div>

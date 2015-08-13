@@ -24,7 +24,6 @@ export class TodoMain {
 
     getList() {
         // TODO: filter list
-        console.log(this.todoService.getFilteredList())
         return this.todoService.getFilteredList();
     }
 
