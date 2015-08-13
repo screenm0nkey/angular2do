@@ -15,7 +15,7 @@ var PATHS = {
   src: {
     js: 'src/**/*.js',
     html: 'src/**/*.html',
-    css : ['src/index.css', 'src/components/**/*.css'],
+    css : ['dist/css/index.css', 'dist/css/**/*.css'],
     sass : ['src/index.scss', 'src/components/**/*.scss']
   },
   lib: [
@@ -41,11 +41,7 @@ gulp.task('clean', function(done) {
 gulp.task('sass', function () {
   gulp.src(PATHS.src.sass)
       .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-      .pipe(gulp.dest('dest/css'));
-});
-
-gulp.task('css', function () {
-  return gulp.src(PATHS.src.css)
+      .pipe(gulp.dest('dist/css'))
       .pipe(concat('build.css'))
       .pipe(gulp.dest('dist'));
 });
