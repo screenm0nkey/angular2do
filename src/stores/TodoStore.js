@@ -1,61 +1,23 @@
 import {isPresent} from 'angular2/src/facade/lang';
+// default exports (one per module) do not need curly braces
+import State from 'stores/app-state';
+import utils from 'stores/common-utils';
 
 
-// Closure
-var state = {
-    list: [
-        {
-            id: UUID(),
-            content: 'create todo PR',
-            completed: false,
-            created_at: new Date()
-        },
-        {
-            id: UUID(),
-            content: 'fix filters',
-            completed: true,
-            created_at: new Date()
-        },
-        {
-            id: UUID(),
-            content: 'attend ng-conf',
-            completed: false,
-            created_at: new Date()
-        }
-    ],
-    filter: todo => todo,
-    currentFilter: 'all',
-    editing: null
-};
 
-function setState(newState) {
-    console.log('SET State');
-    Object.assign(state, newState);
-    // Emit change
-}
+// This stores the state for the app.
+var state = State.getState();
+
 
 export class TodoStore {
     constructor() {
-        // console.log('TodoStore');
+        console.log('TodoStore');
         this.state = state;
     }
 
     get list() {
-        // Immutable
-        let list = this.state.list.slice(0);
-        list.forEach(v => {
-            if (v.created_at) {
-                v.created_at = moment()
-            }
-            v;
-        });
-        return list;
-    }
-
-
-
-    set list(val) {
-        // Immutable
+        // return copy of the list. Immutable
+        return this.state.list.slice(0);
     }
 
     get count() {
@@ -84,13 +46,14 @@ export class TodoStore {
     }
 
     filterList(func) {
-        setState({
+        debugger
+        State.setState({
             filter: func || this.filter
         });
     }
 
     editing(todo = null) {
-        setState({
+        State.setState({
             editing: todo
         });
     }
@@ -99,7 +62,7 @@ export class TodoStore {
         var todos = this.list.filter(function (todo) {
             return !todo.completed;
         }.bind(this));
-        setState({
+        State.setState({
             list: todos
         });
     }
@@ -110,22 +73,24 @@ export class TodoStore {
                 return todo;
             }.bind(this))
             ;
-        setState({
+        State.setState({
             list: todos
         });
     }
 
+
+
     create(newTodo) {
         var completed = isPresent(newTodo.completed) ? newTodo.completed : false;
         var todo = {
-            id: UUID(),
+            id: utils.UUID(),
             content: newTodo.content,
             completed: completed,
-            created_at: new Date()
+            created_at: utils.getDate()
         };
         var todos = this.list;
         todos.push(todo);
-        setState({
+        State.setState({
             list: todos
         });
     }
@@ -134,7 +99,7 @@ export class TodoStore {
         var todos = this.list.filter(function (todo) {
             return todo.id !== todo_id;
         }.bind(this));
-        setState({
+        State.setState({
             list: todos
         });
     }
@@ -147,17 +112,8 @@ export class TodoStore {
                 break;
             }
         }
-        setState({
+        State.setState({
             list: todos
         });
     }
-}
-
-export function UUID() {
-    // Otherwise, just use Math.random
-    // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/2117523#2117523
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
 }
