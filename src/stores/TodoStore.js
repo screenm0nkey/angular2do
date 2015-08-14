@@ -5,19 +5,22 @@ import {isPresent} from 'angular2/src/facade/lang';
 var state = {
     list: [
         {
-            id: 'D6835C2B-6DC4-4036-BE04-D7135F55737D',
+            id: UUID(),
             content: 'create todo PR',
-            completed: false
+            completed: false,
+            created_at: new Date()
         },
         {
-            id: 'BDEEFCA3-EF7E-413F-9A53-CCFF6B5A6FBB',
+            id: UUID(),
             content: 'fix filters',
-            completed: true
+            completed: true,
+            created_at: new Date()
         },
         {
-            id: 'C984C7B7-51B7-476D-B48F-3247871B7678',
+            id: UUID(),
             content: 'attend ng-conf',
-            completed: false
+            completed: false,
+            created_at: new Date()
         }
     ],
     filter: todo => todo,
@@ -39,8 +42,17 @@ export class TodoStore {
 
     get list() {
         // Immutable
-        return this.state.list.slice(0);
+        let list = this.state.list.slice(0);
+        list.forEach(v => {
+            if (v.created_at) {
+                v.created_at = moment()
+            }
+            v;
+        });
+        return list;
     }
+
+
 
     set list(val) {
         // Immutable

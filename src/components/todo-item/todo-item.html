@@ -2,10 +2,8 @@
     <label [class.completed]="todo.completed == true">
         <content></content>
     </label>
-
     <button (click)="deleteMe(todo)"></button>
 </div>
-
 <div class="edit" [hidden]="todoService.state.editing != todo">
     <input type="text"
        [class.editing]="todoService.state.editing == todo"

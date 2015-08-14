@@ -23,7 +23,6 @@ export class TodoMain {
     }
 
     getList() {
-        // TODO: filter list
         return this.todoService.getFilteredList();
     }
 

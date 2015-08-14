@@ -3,8 +3,6 @@ var del = require('del');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var traceur = require('gulp-traceur');
-var rework = require('rework');
-var npmRework = require('rework-npm');
 var path = require('path');
 var fs = require('fs');
 var mkpath = require('mkpath');
@@ -29,10 +27,6 @@ var PATHS = {
     'node_modules/whatwg-fetch/fetch.js',
     'node_modules/jwt-decode/build/jwt-decode.js',
     'node_modules/angular2/node_modules/zone.js/long-stack-trace-zone.js',
-    'node_modules/axios/dist/axios.js',
-    'node_modules/axios/dist/axios.map',
-    'node_modules/font-awesome/css/**/*.*',
-    'node_modules/bootstrap/dist/css/**/*.*',
     'node_modules/moment/moment.js'
   ]
 };
@@ -41,25 +35,17 @@ gulp.task('clean', function(done) {
   del(['dist'], done);
 });
 
-gulp.task('cleanDistCss', function(done) {
+gulp.task('clean-dist-css', function(done) {
     del(['dist/css'], done);
 });
 
-gulp.task('sass',['cleanDistCss'], function () {
+gulp.task('sass',['clean-dist-css'], function () {
   gulp.src(PATHS.src.sass)
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('dist/css'))
       .pipe(concat('build.css'))
       .pipe(gulp.dest('dist'));
 });
-
-// this is no longer used
-gulp.task('css', function () {
-    gulp.src(PATHS.src.css)
-        .pipe(concat('build.css'))
-        .pipe(gulp.dest('dist'));
-});
-
 
 
 gulp.task('js', function () {

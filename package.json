@@ -39,8 +39,6 @@
     "systemjs": "~0.16.10",
     "whatwg-fetch": "~0.7.0",
     "when": "~3.7.3",
-    "axios": "^0.5.2",
-    "font-awesome": "^4.3.0",
     "moment": "^2.9.0"
   }
 }
