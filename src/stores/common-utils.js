@@ -14,5 +14,9 @@ export default class CommonUtils {
     pluralize (count, word) {
         return word + (count === 1 ? '' : 's');
     }
+
+    currentFilter () {
+        return location.hash.replace('#/', '') || 'all';
+    }
 }
 

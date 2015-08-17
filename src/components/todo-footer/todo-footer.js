@@ -16,8 +16,7 @@ export class TodoFooter {
     constructor(todoService: TodoStore, utils : Utils) {
         this.todoService = todoService;
         this.utils = utils;
-        // TODO: location service
-        this.currentFilter = location.hash.replace('#/', '') || 'all';
+        this.currentFilter = utils.currentFilter();
         this.changeFilter(this.currentFilter);
 
     }
