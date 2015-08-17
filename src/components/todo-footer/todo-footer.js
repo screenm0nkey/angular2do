@@ -1,19 +1,21 @@
 import {Component, View} from 'angular2/angular2';
-import {TodoStore} from 'stores/TodoStore';
-
+import {TodoStore} from 'stores/TodoService';
+import Utils from 'stores/common-utils';
 
 @Component({
     selector: 'todo-footer',
-    injectables: [TodoStore]
+    injectables: [TodoStore, Utils]
 })
 @View({
     templateUrl: System.baseURL + 'components/todo-footer/todo-footer.html'
 })
 export class TodoFooter {
     todoService: TodoStore;
+    utils : Utils;
 
-    constructor(todoService: TodoStore) {
+    constructor(todoService: TodoStore, utils : Utils) {
         this.todoService = todoService;
+        this.utils = utils;
         // TODO: location service
         this.currentFilter = location.hash.replace('#/', '') || 'all';
         this.changeFilter(this.currentFilter);
@@ -24,16 +26,7 @@ export class TodoFooter {
         this.todoService.clearCompleted();
     }
 
-    pluralize(count, word) {
-        // TODO: pluralize service
-        return word + (count === 1 ? '' : 's');
-    }
-
     changeFilter(filter = 'all', $event) {
-        if ($event && $event.preventDefault) {
-            $event.preventDefault();
-        }
-
         if (filter === 'all') {
             this.todoService.filterList((todo) => true);
         } else if (filter === 'completed') {

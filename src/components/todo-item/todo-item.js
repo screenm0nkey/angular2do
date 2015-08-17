@@ -1,6 +1,6 @@
 import {Component, View} from 'angular2/angular2';
 import {TodoFocus} from 'directives/todo-focus';
-import {TodoStore} from 'stores/TodoStore';
+import {TodoStore} from 'stores/TodoService';
 
 var keymap = {
     tab: 9,
@@ -33,21 +33,19 @@ export class TodoItem {
     }
 
     editTodo(todo) {
-        console.log(1111, 'Nick')
         this.todoService.editing(todo);
     }
 
     doneEditing($event, todo) {
-        var which = $event.which;
-        var target = $event.target;
-        if (which === keymap.enter) {
+        let which = $event.which;
+        let target = $event.target;
 
+        if (which === keymap.enter) {
             todo.content = target.value;
             this.todoService.update(todo);
             this.todoService.editing(null);
 
         } else if (which === keymap.esc) {
-
             this.todoService.update(todo);
             this.todoService.editing(null);
         }

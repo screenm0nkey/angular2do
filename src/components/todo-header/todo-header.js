@@ -1,5 +1,5 @@
 import {Component, View} from 'angular2/angular2';
-import {TodoStore} from 'stores/TodoStore';
+import {TodoStore} from 'stores/TodoService';
 
 var keymap = {
     tab: 9,

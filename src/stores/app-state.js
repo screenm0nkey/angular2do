@@ -1,5 +1,6 @@
-import utils from 'stores/common-utils';
+import Utils from 'stores/common-utils';
 
+var utils = new Utils();
 var state = {
     list: [
         {
@@ -29,6 +30,7 @@ var state = {
 };
 
 class StateProvider {
+
     getState () {
         return state;
     }

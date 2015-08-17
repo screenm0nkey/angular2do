@@ -1,6 +1,6 @@
 import {Component, View, For} from 'angular2/angular2';
 import {TodoItem} from 'components/todo-item/todo-item';
-import {TodoStore} from 'stores/TodoStore';
+import {TodoStore} from 'stores/TodoService';
 
 
 @Component({

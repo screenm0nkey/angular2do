@@ -1,26 +1,26 @@
 <footer class="todo-footer" [hidden]="todoService.count == 0">
     <span>
         <strong>{{ todoService.remainingCount }}</strong>
-        {{ pluralize(todoService.remainingCount, 'item') }} left
+        {{ utils.pluralize(todoService.remainingCount, 'item') }} left
       </span>
 
     <ul>
         <li>
-            <a href="https://gdi2290.net/angular2do/#/"
+            <a href="/#/"
                 (click)="changeFilter('all', $event)"
                 [class.selected]="currentFilter == 'all'">
                 All
             </a>
         </li>
         <li>
-            <a href="https://gdi2290.net/angular2do/#/active"
+            <a href="#/active"
                 (click)="changeFilter('active', $event)"
                 [class.selected]="currentFilter == 'active'">
                 Active
             </a>
         </li>
         <li>
-            <a href="https://gdi2290.net/angular2do/#/completed"
+            <a href="/#/completed"
                 (click)="changeFilter('completed', $event)"
                 [class.selected]="currentFilter == 'completed'">
                 Completed

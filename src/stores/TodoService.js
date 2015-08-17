@@ -1,12 +1,13 @@
 import {isPresent} from 'angular2/src/facade/lang';
 // default exports (one per module) do not need curly braces
 import State from 'stores/app-state';
-import utils from 'stores/common-utils';
+import Utils from 'stores/common-utils';
 
 
 
 // This stores the state for the app.
 var state = State.getState();
+var utils = new Utils();
 
 
 export class TodoStore {

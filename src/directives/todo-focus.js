@@ -11,6 +11,7 @@ export class TodoFocus {
     }
     // this is a setter for 'isFocused' from es5
     set isFocused(value) {
+        console.log('lowman', value, this.element.domElement);
         if (value) {
             this.element.domElement.focus();
         }
