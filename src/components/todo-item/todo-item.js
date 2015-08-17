@@ -32,6 +32,11 @@ export class TodoItem {
         this.todoService.remove(todo.id);
     }
 
+    editTodo(todo) {
+        console.log(1111, 'Nick')
+        this.todoService.editing(todo);
+    }
+
     doneEditing($event, todo) {
         var which = $event.which;
         var target = $event.target;

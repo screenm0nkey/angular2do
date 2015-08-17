@@ -26,10 +26,6 @@ export class TodoMain {
         return this.todoService.getFilteredList();
     }
 
-    editTodo(todo) {
-        this.todoService.editing(todo);
-    }
-
     toggleComplete(todo) {
         this.todoService.toggleComplete(todo);
     }

@@ -21,6 +21,8 @@ var state = {
             created_at: utils.getDate()
         }
     ],
+    // this is the default filter for the list. new filters are assigned
+    // from the footer filter buttons
     filter: todo => todo,
     currentFilter: 'all',
     editing: null

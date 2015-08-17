@@ -9,7 +9,7 @@
                    [checked]="todo.completed == true"
                    (click)="toggleComplete(todo)"/>
 
-            <todo-item [value]="todo" (dblclick)="editTodo(todo)">{{ todo.content }} <span class="small">{{todo.created_at}}</span></todo-item>
+            <todo-item [value]="todo">{{ todo.content }} <span class="small">{{todo.created_at}}</span></todo-item>
         </li>
     </ul>
 

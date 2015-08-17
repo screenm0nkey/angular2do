@@ -1,5 +1,5 @@
 <div class="todo-item view" [hidden]="todoService.state.editing == todo">
-    <label [class.completed]="todo.completed == true">
+    <label (dblclick)="editTodo(todo)" [class.completed]="todo.completed == true">
         <content></content>
     </label>
     <button (click)="deleteMe(todo)"></button>

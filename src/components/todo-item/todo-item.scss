@@ -1,3 +1,7 @@
+todo-item {
+  width: 100%;
+  display: block;
+}
 .todo-item {
     label {
         word-break: break-word;
@@ -7,6 +11,7 @@
         line-height: 1.2;
         -webkit-transition: color 0.4s;
         transition: color 0.4s;
+      cursor: pointer;
 
         .small {
           color: #ccc;

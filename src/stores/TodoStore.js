@@ -46,7 +46,6 @@ export class TodoStore {
     }
 
     filterList(func) {
-        debugger
         State.setState({
             filter: func || this.filter
         });
@@ -77,7 +76,6 @@ export class TodoStore {
             list: todos
         });
     }
-
 
 
     create(newTodo) {
