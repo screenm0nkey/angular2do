@@ -8,8 +8,8 @@
 4. `localhost:3000`
 
 
-This app was based on a repo by Jesus Rodriguez
-https://github.com/angular-tips/GermanWords-frontend-angular-2
-and gdi2290's angular2do
+This app is based on the boilerplate made by [Pawel Kozlowski](https://github.com/pkozlowski-opensource) called [ng2-play](https://github.com/pkozlowski-opensource/ng2-play) and gdi2290's angular2do
+
+Also used Jesus Rodriguez German words app https://github.com/angular-tips/GermanWords-frontend-angular-2
 
 
